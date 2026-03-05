@@ -2,18 +2,77 @@ import java.util.Scanner;
 
     public class Main{
 
-        public static double add(double a, double b){
-            return a + b;
+        public static double add(double num1, double num2){
+            return num1 + num2;
         }
-        public static double subtract(double a, double b){
-            return a - b;
+        public static double subtract(double num1, double num2){
+            return num1 - num2;
         }
-        public static double multiply(double a, double b){
-            return a = b;
+        public static double multiply(double num1, double num2){
+            return num1 * num2;
         }
-        public static Double divide(double a, double b){
-            if(b == 0){
-                return null;
+        public static Double divide(double num1, double num2){
+            if(num2 == 0){
+                return Double.NaN;
             }
-            return a / b;
+            return num1 / num2;
         }
+
+        public static void main(String [] args){
+            Scanner scan = new Scanner(System.in);
+
+            int choice;
+            double num1,num2,result = 0;
+            do {
+
+                System.out.println("Probably a simple menu driven calculator");
+                System.out.println("Add");
+                System.out.println("Subtract");
+                System.out.println("Multiply");
+                System.out.println("Divide");
+                System.out.println("Exit");
+                System.out.println("please select your choice: ");
+
+                choice = scan.nextInt();
+
+                if(choice >= 1 && choice <=4){
+                    System.out.println("Enter num1: ");
+                    num1 = scan.nextInt();
+
+                    System.out.println("Enter num2: ");
+                    num2 = scan.nextInt();
+
+
+
+                    switch(choice){
+
+                        case 1:
+                            result = add(num1, num2);
+                            System.out.println("Result: "+ result);
+                            break;
+
+                        case 2:
+                            result = subtract(num1, num2);
+                            System.out.println("Result: "+ result);
+                            break;
+
+                        case 3:
+                            result = multiply(num1, num2);
+                            System.out.println("Result: "+ result);
+                            break;
+
+                        case 4:
+                            result = divide(num1, num2);
+                            if(Double.isNaN(result)) {
+                                System.out.println("Error occured, Cannot be divide by 0");
+                            }
+                            else{
+                                System.out.println("Result: "+ result);
+                            }
+                    }
+                }
+            }while(choice != 5);
+            System.out.println("Calculator closed");
+            scan.close();
+        }
+    }
